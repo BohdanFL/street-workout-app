@@ -35,7 +35,9 @@ const checkboxs = document.querySelectorAll('.check-js')
 let total = localStorage.getItem('total') || 0
 output.innerHTML = localStorage.getItem('total')
 characTotal.innerHTML = output.innerHTML
-let checkedList = localStorage.getItem('checkedList').split(',') || []
+// let checkedList = localStorage.getItem('checkedList').split(',') || []
+let checkedList = []
+
 
 const menuItem = document.querySelectorAll(".menu__item")
 const blocks = document.querySelectorAll(".block")
@@ -262,7 +264,7 @@ firebase.auth().onAuthStateChanged((user) => {
         createTop(user.uid)
 
     } else {
-        window.location = 'login.html'
+        window.location = 'https://bohdanflexer.github.io/street-workout-app/login.html'
     }
 });
 
