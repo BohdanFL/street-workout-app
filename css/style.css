@@ -1,0 +1,318 @@
+/*` Global start  */
+*,
+*::after,
+*::before {
+    font-family: 'Open sans', Verdana, Geneva, Tahoma, sans-serif;
+    padding: 0;
+    margin: 0;
+}
+
+p {
+    margin: 0;
+}
+
+label {
+    margin: 0;
+}
+
+body {
+    background-color: #2d2d2d;
+    overflow-x: hidden;
+    color: #ffffff;
+}
+
+ul {
+    list-style: none;
+}
+
+button,
+input,
+textarea,
+select {
+    border: none;
+    background: none;
+    color: inherit;
+    font-family: inherit;
+}
+
+img {
+    height: auto;
+    display: block;
+    max-width: 100%;
+}
+
+.hide {
+    display: none;
+}
+
+a,
+a:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
+/*` Other start  */
+.card {
+    font-size: 10px;
+}
+
+.account {
+    flex: 0 1 50%;
+    margin-bottom: 20px;
+}
+
+.block {
+    padding: 20px;
+}
+
+/*` Slider */
+
+.slider-arrow {
+    height: 100%;
+    position: absolute;
+    display: block;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.slider-next {
+    right: 10px;
+}
+
+.slider-prev {
+    left: 10px;
+    z-index: 1;
+}
+
+.slick-dots {
+    display: flex !important;
+    flex-wrap: wrap;
+    max-width: 180px;
+}
+
+.slick-dots button {
+    background: #464545;
+    border-radius: 20px;
+    margin: 0px 5px;
+    min-width: 45px;
+    outline: none;
+}
+
+.slick-dots .slick-active button {
+    color: #464545;
+    background: #eeeeee;
+}
+
+.slick-dots li {
+    margin-bottom: 5px;
+    flex: 0 1 33.33%;
+    text-align: center;
+}
+
+.dots__wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+/*` Menu */
+.menu {
+    background: #464545;
+}
+
+.menu__list {
+    list-style: none;
+    display: flex;
+    padding: 0;
+    margin: 0;
+}
+
+.menu__item {
+    flex: 0 1 25%;
+    text-align: center;
+    font-size: 18px;
+    padding: 10px 12px;
+    color: #eee;
+    cursor: pointer
+}
+
+
+.menu__item.active {
+    border-bottom: 1px solid #eee;
+}
+
+/*` Month start */
+
+.year {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: relative;
+}
+
+.year__total {
+    position: absolute;
+    left: 10px;
+    font-size: 50px;
+}
+
+.month {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    outline: none;
+    margin: 15px 0px 30px 0px;
+}
+
+.month__btns {
+    display: flex;
+    flex-wrap: wrap;
+    width: 245px;
+}
+
+.month__btns input[type=checkbox] {
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+}
+
+.month__day-name {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.month__wrapper p {
+    margin: 0;
+    text-align: center;
+}
+
+.month__wrapper.active {
+    box-shadow: 0px 5px 10px 3px rgba(255, 68, 0, .3);
+}
+
+.check-js.active {
+    transform: scale(1.5);
+}
+
+/* .month__btns input.checked::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #fff;
+    border-radius: 3px;
+}
+
+.month__btns input.checked:checked::before {
+    transform: scale(1.2);
+    z-index: 5;
+    background-color: #0075ff;
+} */
+
+
+/*` Charac(characteristics) */
+
+.sublist ul {
+    margin-left: 20px;
+}
+
+.sublist {
+    cursor: pointer;
+}
+
+.sublist ul {
+    transform-origin: top;
+    height: 0;
+    transform: scaleY(0);
+
+}
+
+.sublist ul.showlist {
+    animation: showList 300ms forwards;
+}
+
+.sublist ul.hidelist {
+    animation: hideList 300ms forwards;
+}
+
+/*` Elements */
+
+.elements__item label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 250px;
+    cursor: pointer;
+}
+
+.elements__item input {
+    width: 23px;
+    height: 23px;
+    cursor: pointer;
+}
+
+/*` Top */
+.top__account:nth-child(1) {
+    background: rgba(255, 217, 0, 0.5);
+}
+.top__account:nth-child(2) {
+    background: rgba(192, 192, 192, 0.5);
+
+}
+.top__account:nth-child(3) {
+    background: #cd803280;
+
+}
+
+@keyframes showList {
+    from {
+        height: 0px;
+        transform: scaleY(0);
+    }
+
+    to {
+        height: 96px;
+        transform: scaleY(1);
+    }
+}
+
+@keyframes hideList {
+    from {
+        height: 96px;
+        transform: scaleY(1);
+    }
+
+    to {
+        height: 0px;
+        transform: scaleY(0);
+    }
+}
+
+/* Media queries */
+
+@media (max-width: 901px) {
+    .menu__item {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 600px) {
+    .menu__item {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 480px) {
+    .menu__item {
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 351px) {}
+
+@media (max-width: 376px) {}
+
+@media (max-width: 426px) {}

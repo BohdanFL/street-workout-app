@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html class="h-100" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-database.js"></script>
+    <script>
+        var firebaseConfig = {
+            apiKey: "AIzaSyCG9O0rVAgBQY8aIx9V6WDit70onR4mRgo",
+            authDomain: "first-test-firebase-72ceb.firebaseapp.com",
+            databaseURL: "https://first-test-firebase-72ceb.firebaseio.com",
+            projectId: "first-test-firebase-72ceb",
+            storageBucket: "first-test-firebase-72ceb.appspot.com",
+            messagingSenderId: "386704160500",
+            appId: "1:386704160500:web:f78854a68edd79b40150a1",
+            measurementId: "G-JNTLLJ68MG"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
+    <script src="js/reg.js" defer></script>
+    <title>Реєстрація</title>
+    <style>
+        .title {
+            font-weight: 700;
+        }
+
+        input::placeholder {
+            color: #ffffff50 !important;
+        }
+
+        #form-reg {
+            max-width: 290px;
+            margin: 0 auto;
+        }
+
+        .link-wrapepr a {
+            max-width: 60px;
+        }
+
+        /* p.warning-length, p.warning-correct {
+            font-size: 12px;
+        } */
+    </style>
+</head>
+
+<body class="h-100 bg-dark d-flex justify-content-center px-3">
+    <div class="wrapper w-100">
+        <h1 class="title text-secondary pt-4 mb-5 pb-5">
+            Реєстрація
+        </h1>
+        <form class="mb-2 text-center" id="form-reg">
+            <input class="form-control bg-secondary text-white mb-3 border-0" type="text" required id="nickname"
+                placeholder="Введіть свій нікнейм">
+            <input class="form-control bg-secondary text-white mb-3 border-0" type="email" required id="email"
+                placeholder="Введіть електронну адресу">
+            <input class="form-control bg-secondary text-white border-0 mb-3" type="password" required id="password"
+                placeholder="Введіть пароль">
+            <input class="form-control bg-secondary text-white mb-3 border-0" type="password" required
+                id="repeat-password" placeholder="Повторіть пароль">
+            <button class="w-100 btn btn-secondary" id="submit">
+                Зареєструватися
+            </button>
+            <p class="warning-length text-left m-0 text-danger" hidden>Пароль не менше 6 символів</p>
+            <p class="warning-correct m-0 text-left text-danger" hidden>Паролі не співпадають</p>
+            <div class="link-wrapper text-left mt-2">
+                <a class="btn btn-secondary btn-sm" href="login.html">
+                    Увійти
+                </a>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

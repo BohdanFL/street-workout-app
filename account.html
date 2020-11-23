@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-database.js"></script>
+    <script>
+        var firebaseConfig = {
+            apiKey: "AIzaSyCG9O0rVAgBQY8aIx9V6WDit70onR4mRgo",
+            authDomain: "first-test-firebase-72ceb.firebaseapp.com",
+            databaseURL: "https://first-test-firebase-72ceb.firebaseio.com",
+            projectId: "first-test-firebase-72ceb",
+            storageBucket: "first-test-firebase-72ceb.appspot.com",
+            messagingSenderId: "386704160500",
+            appId: "1:386704160500:web:f78854a68edd79b40150a1",
+            measurementId: "G-JNTLLJ68MG"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
+
+    <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
+    <title>Ваш профіль</title>
+    <style>
+        #sign-out {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <button class="btn btn-secondary btn-lg border-0" id="sign-out">Вийти з аккаунту</button>
+    <img src="img/bg.jpg" alt="">
+    <nav class="menu">
+        <ul class="menu__list">
+            <li class="menu__item charac ">
+                Характеристика
+            </li>
+            <li class="menu__item visiting ">
+                Відвідування
+            </li>
+            <li class="menu__item elements active">
+                Елементи
+            </li>
+            <li class="menu__item top">
+                Топ
+            </li>
+        </ul>
+    </nav>
+    <div class="block charac hide">
+        <h2>Характеристика</h2>
+        <div class="charac__elements">
+            <h3>Елементи</h3>
+            <ul class="charac__elements-list">
+                <li class="sublist">К-сть вивчених елементів
+                    <ul class="hidelist">
+                        <li>
+                            Загально: 33
+                        </li>
+                        <li>
+                            Низького рівня: 20
+                        </li>
+                        <li>
+                            Середнього рівня: 11
+                        </li>
+                        <li>
+                            Високого рівня: 2
+                        </li>
+                    </ul>
+                </li>
+                <li>К-сть вивчених елементів за останній місяць: 2</li>
+                <li>Останній вивчений елемент: Перельот кутом - 23 грудня 2020</li>
+            </ul>
+        </div>
+        <div class="charac__visiting">
+            <h3>Відвідування</h3>
+            <ul class="charac__visiting-list">
+                <li>Всього відвідувань: <span class="charac__visiting-total total"></span></li>
+                <li>Відвідувань за останній місяць(<span class="last-month-name"></span>): <span
+                        class="last-month-number"></span></li>
+                <li class="sublist">Відвідування по місяцям
+                    <ul class="hidelist charac__visiting-months">
+                        <li>Січень: 5 </li>
+                        <li>Лютий: 9</li>
+                        <li>Березень: 15</li>
+                        <li>Квітень: 10</li>
+                        <li>Травень: 8</li>
+                        <li>Червень: 15</li>
+                        <li>Липень: 14</li>
+                        <li>Серпень: 14</li>
+                        <li>Вересень: 15</li>
+                        <li>Жовтень: 12</li>
+                        <li>Листопад: 11</li>
+                        <li>Грудень: 13</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="block visiting hide">
+        <div class="year__total total">0</div>
+        <div class="dots__wrapper"></div>
+        <div class="year">
+        </div>
+    </div>
+    <div class="block elements ">
+        <h2>Елементи</h2>
+        <div class="container-fluid">
+            <div class="elements__wrapper row">
+                <div class="elements__column w-100 col-lg-4 low-level mb-5">
+                    <div class="elements__inner container-fluid row">
+                        <p class="col-6 p-0">
+                            Вивчено: <span class="low-level-learn"></span>
+                        </p>
+                        <p class="col-6 p-0">
+                            Всього: <span class="low-level-total"></span>
+                        </p>
+                    </div>
+                    <h3>Низького рівня</h3>
+                    <ul class="elements__list low-level__list">
+                    </ul>
+                </div>
+                <div class="elements__column w-100 col-lg-4 medium-level mb-5">
+                    <div class="elements__inner container-fluid row">
+                        <p class="col-6 p-0">
+                            Вивчено: <span class="medium-level-learn"></span>
+                        </p>
+                        <p class="col-6 p-0">
+                            Всього: <span class="medium-level-total"></span>
+                        </p>
+                    </div>
+                    <h3>Середньго рівня</h3>
+                    <ul class="elements__list medium-level__list">
+                    </ul>
+                </div>
+                <div class="elements__column w-100 col-lg-4 high-level mb-5">
+                    <div class="elements__inner container-fluid row">
+                        <p class="col-6 p-0">
+                            Вивчено: <span class="high-level-learn"></span>
+                        </p>
+                        <p class="col-6 p-0">
+                            Всього: <span class="high-level-total"></span>
+                        </p>
+                    </div>
+                    <h3>Вищого рівня</h3>
+                    <ul class="elements__list high-level__list">
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="block top">
+        <h2>Топ</h2>
+        <div class="top__wrapper">
+            <div class="top__account">
+                <h3>Топ 1 </h3>
+                <ul class="top__list">
+                    <li class="top__item">
+                        Никнейм: Богдан
+                    </li>
+                    <li class="top__item">
+                        Рівень: 40
+                    </li>
+                    <li class="top__item">
+                        К-сть відвідувань: 325
+                    </li>
+                    <li class="top__item sublist">
+                        К-сть вивчених елементів
+                        <ul class="hidelist">
+                            <li>
+                                Загально: 74
+                            </li>
+                            <li>
+                                Низького рівня: 50
+                            </li>
+                            <li>
+                                Середнього рівня: 20
+                            </li>
+                            <li>
+                                Високого рівня: 4
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="top__account">
+                <h3>Топ 2 </h3>
+                <ul class="top__list">
+                    <li class="top__item">
+                        Никнейм: Марян
+                    </li>
+                    <li class="top__item">
+                        Рівень: 37
+                    </li>
+                    <li class="top__item">
+                        К-сть відвідувань: 280
+                    </li>
+                    <li class="top__item sublist">
+                        К-сть вивчених елементів
+                        <ul class="hidelist">
+                            <li>
+                                Загально: 69
+                            </li>
+                            <li>
+                                Низького рівня: 43
+                            </li>
+                            <li>
+                                Середнього рівня: 19
+                            </li>
+                            <li>
+                                Високого рівня: 7
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="top__account">
+                <h3>Топ 3 </h3>
+                <ul class="top__list">
+                    <li class="top__item">
+                        Никнейм: Роман
+                    </li>
+                    <li class="top__item">
+                        Рівень: 33
+                    </li>
+                    <li class="top__item">
+                        К-сть відвідувань: 150
+                    </li>
+                    <li class="top__item sublist">
+                        К-сть вивчених елементів
+                        <ul class="hidelist">
+                            <li>
+                                Загально: 33
+                            </li>
+                            <li>
+                                Низького рівня: 20
+                            </li>
+                            <li>
+                                Середнього рівня: 11
+                            </li>
+                            <li>
+                                Високого рівня: 2
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="top__account">
+                <h3>Топ 4 </h3>
+                <ul class="top__list">
+                    <li class="top__item">
+                        Никнейм: Вадим
+                    </li>
+                    <li class="top__item">
+                        Рівень: 19
+                    </li>
+                    <li class="top__item">
+                        К-сть відвідувань: 126
+                    </li>
+                    <li class="top__item sublist">
+                        К-сть вивчених елементів
+                        <ul class="hidelist">
+                            <li>
+                                Загально: 45
+                            </li>
+                            <li>
+                                Низького рівня: 40
+                            </li>
+                            <li>
+                                Середнього рівня: 5
+                            </li>
+                            <li>
+                                Високого рівня: 0
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="top__account">
+                <h3>Топ 5 </h3>
+                <ul class="top__list">
+                    <li class="top__item">
+                        Никнейм: Степан
+                    </li>
+                    <li class="top__item">
+                        Рівень: 18
+                    </li>
+                    <li class="top__item">
+                        К-сть відвідувань: 300
+                    </li>
+                    <li class="top__item sublist">
+                        К-сть вивчених елементів
+                        <ul class="hidelist">
+                            <li>
+                                Загально: 37
+                            </li>
+                            <li>
+                                Низького рівня: 33
+                            </li>
+                            <li>
+                                Середнього рівня: 4
+                            </li>
+                            <li>
+                                Високого рівня: 0
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <!-- <script src="js/app.js" type="text/javascript" charset="utf-8"></script> -->
+    <script src="js/new.js"></script>
+</body>
+
+</html>

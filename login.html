@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html class="h-100" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-database.js"></script>
+    <script>
+        var firebaseConfig = {
+            apiKey: "AIzaSyCG9O0rVAgBQY8aIx9V6WDit70onR4mRgo",
+            authDomain: "first-test-firebase-72ceb.firebaseapp.com",
+            databaseURL: "https://first-test-firebase-72ceb.firebaseio.com",
+            projectId: "first-test-firebase-72ceb",
+            storageBucket: "first-test-firebase-72ceb.appspot.com",
+            messagingSenderId: "386704160500",
+            appId: "1:386704160500:web:f78854a68edd79b40150a1",
+            measurementId: "G-JNTLLJ68MG"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        firebase.auth().onAuthStateChanged((user) => {
+            if (user) {
+                window.location = 'account.html'
+            } else {
+                return
+            }
+        });
+    </script>
+
+    <link rel="stylesheet" href="css/style.css">
+    <title>Вхід</title>
+    <style>
+        .title {
+            font-weight: 700;
+        }
+
+        input::placeholder {
+            color: #ffffff50 !important;
+        }
+    </style>
+</head>
+
+<body class="h-100 bg-dark d-flex justify-content-center p-3 pt-3">
+    <div class="wrapper">
+        <h1 class="title text-secondary pt-5 mb-5 pb-5">
+            Вхід в профіль
+        </h1>
+        <form class="mb-2" id="form-login">
+            <input class="form-control bg-secondary text-white mb-3 border-0" type="email" id="email"
+                placeholder="Введіть електронну адресу">
+            <input class="form-control bg-secondary text-white mb-3 border-0" type="password" id="password"
+                placeholder="Введіть пароль">
+            <button class="w-100 btn btn-secondary" id="submit">
+                Увійти
+            </button>
+        </form>
+        <a class="btn btn-secondary btn-sm" href="reg.html">
+            Зареєструватися
+        </a>
+    </div>
+    <script src="js/login.js"></script>
+</body>
+
+</html>
