@@ -172,6 +172,35 @@ function getDataElements(userID, level, list) {
         })
 }
 
+function checkInput() {
+    if (checkbox.checked) {
+        checkedList.push(index)
+        total++
+    } else {
+        checkedList.forEach((item, indexItem) => {
+            if (parseInt(item) == index) {
+                checkedList.splice(indexItem, 1)
+            }
+        })
+        total--
+    }
+    localStorage.setItem('checkedList', checkedList)
+    localStorage.setItem('total', total)
+    output.innerHTML = total
+    characTotal.innerHTML = total
+    let checkedDays = 0
+    const monthWrapper = checkbox.parentElement.parentElement
+    monthWrapper.querySelectorAll('.check-js').forEach(item => {
+        if (item.checked) {
+            checkedDays++
+        }
+        if (monthWrapper.parentElement.getAttribute('data-slick-index') * 1 === new Date().getMonth() - 1) {
+            lastMonthNumber.textContent = checkedDays
+            localStorage.setItem('lastMonthNumber', lastMonthNumber.textContent)
+        }
+        monthWrapper.children[0].children[1].textContent = `(${checkedDays})`
+    })
+}
 
 checkboxs.forEach((checkbox, index) => {
     checkedList.forEach(item => {
@@ -233,7 +262,7 @@ firebase.auth().onAuthStateChanged((user) => {
         createTop(user.uid)
 
     } else {
-        window.location = 'login.html'
+        window.location = 'https://bohdanflexer.github.io/street-workout-app/login.html'
     }
 });
 

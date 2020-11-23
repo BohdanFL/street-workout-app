@@ -7,7 +7,7 @@ formLogin.addEventListener('submit', (e) => {
 
     firebase.auth().signInWithEmailAndPassword(email, password)
         .then((user) => {
-            window.location = 'account.html'
+            window.location = 'https://bohdanflexer.github.io/street-workout-app/account.html'
         })
         .catch((error) => {
             var errorCode = error.code;
