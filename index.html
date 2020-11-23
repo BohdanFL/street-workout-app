@@ -7,9 +7,6 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
-
     <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-analytics.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-auth.js"></script>
@@ -27,18 +24,9 @@
         };
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
-
-        firebase.auth().onAuthStateChanged((user) => {
-            if (user) {
-                window.location = 'account.html'
-            } else {
-                return
-            }
-        });
     </script>
-
-    <link rel="stylesheet" href="css/style.css">
-    <title>Вхід</title>
+    <script src="js/reg.js" defer></script>
+    <title>Реєстрація</title>
     <style>
         .title {
             font-weight: 700;
@@ -47,28 +35,48 @@
         input::placeholder {
             color: #ffffff50 !important;
         }
+
+        #form-reg {
+            max-width: 290px;
+            margin: 0 auto;
+        }
+
+        .link-wrapepr a {
+            max-width: 60px;
+        }
+
+        /* p.warning-length, p.warning-correct {
+            font-size: 12px;
+        } */
     </style>
 </head>
 
-<body class="h-100 bg-dark d-flex justify-content-center p-3 pt-3">
-    <div class="wrapper">
-        <h1 class="title text-secondary pt-5 mb-5 pb-5">
-            Вхід в профіль
+<body class="h-100 bg-dark d-flex justify-content-center px-3">
+    <div class="wrapper w-100">
+        <h1 class="title text-secondary pt-4 mb-5 pb-5">
+            Реєстрація
         </h1>
-        <form class="mb-2" id="form-login">
-            <input class="form-control bg-secondary text-white mb-3 border-0" type="email" id="email"
+        <form class="mb-2 text-center" id="form-reg">
+            <input class="form-control bg-secondary text-white mb-3 border-0" type="text" required id="nickname"
+                placeholder="Введіть свій нікнейм">
+            <input class="form-control bg-secondary text-white mb-3 border-0" type="email" required id="email"
                 placeholder="Введіть електронну адресу">
-            <input class="form-control bg-secondary text-white mb-3 border-0" type="password" id="password"
+            <input class="form-control bg-secondary text-white border-0 mb-3" type="password" required id="password"
                 placeholder="Введіть пароль">
+            <input class="form-control bg-secondary text-white mb-3 border-0" type="password" required
+                id="repeat-password" placeholder="Повторіть пароль">
             <button class="w-100 btn btn-secondary" id="submit">
-                Увійти
+                Зареєструватися
             </button>
+            <p class="warning-length text-left m-0 text-danger" hidden>Пароль не менше 6 символів</p>
+            <p class="warning-correct m-0 text-left text-danger" hidden>Паролі не співпадають</p>
+            <div class="link-wrapper text-left mt-2">
+                <a class="btn btn-secondary btn-sm" href="login.html">
+                    Увійти
+                </a>
+            </div>
         </form>
-        <a class="btn btn-secondary btn-sm" href="index.html">
-            Зареєструватися
-        </a>
     </div>
-    <script src="js/login.js"></script>
 </body>
 
 </html>
