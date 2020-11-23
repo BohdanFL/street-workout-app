@@ -71,8 +71,8 @@ firebase.auth().onAuthStateChanged((user) => {
     if (user) {
         console.log(user);
         setTimeout(() => {
-            // window.location = 'account.html'
-        }, 5000)
+            window.location = 'account.html'
+        }, 3000)
     } else {
         return
     }

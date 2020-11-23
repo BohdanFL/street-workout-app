@@ -237,71 +237,71 @@ firebase.auth().onAuthStateChanged((user) => {
     }
 });
 
-// menuItem.forEach(item => {
+menuItem.forEach(item => {
 
-//     item.addEventListener("click", () => {
+    item.addEventListener("click", () => {
 
-//         menuItem.forEach(item => {
-//             item.classList.remove("active")
-//         })
+        menuItem.forEach(item => {
+            item.classList.remove("active")
+        })
 
-//         item.classList.add("active")
-//         const currentItem = document.querySelector('.menu__item.active')
+        item.classList.add("active")
+        const currentItem = document.querySelector('.menu__item.active')
 
-//         blocks.forEach(item => {
-//             item.classList.add('hide')
+        blocks.forEach(item => {
+            item.classList.add('hide')
 
-//             if (currentItem.classList[1] === item.classList[1]) {
-//                 item.classList.remove('hide')
+            if (currentItem.classList[1] === item.classList[1]) {
+                item.classList.remove('hide')
 
-//                 if (item.classList.contains('visiting') && loadSlider) {
-//                     loadSlider = false
-//                     $('.year').slick({
-//                             slidesToShow: 3,
-//                             slidesToScroll: 3,
-//                             swipe: false,
-//                             prevArrow: '<svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-arrow-left-circle-fill slider-arrow slider-prev" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5.5a.5.5 0 0 0 0-1H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5z"/></svg>',
-//                             nextArrow: '<svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-arrow-right-circle-fill slider-arrow slider-next" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-11.5.5a.5.5 0 0 1 0-1h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5z"/></svg>',
-//                             responsive: [{
-//                                     breakpoint: 1441,
-//                                     settings: {
-//                                         slidesToShow: 3,
-//                                         slidesToScroll: 1,
-//                                         infinite: true
-//                                     }
-//                                 },
-//                                 {
-//                                     breakpoint: 1025,
-//                                     settings: {
-//                                         slidesToShow: 2,
-//                                         slidesToScroll: 2
-//                                     }
-//                                 },
-//                                 {
-//                                     breakpoint: 686,
-//                                     settings: {
-//                                         slidesToShow: 1,
-//                                         slidesToScroll: 1,
-//                                         swipe: true,
-//                                         arrows: false,
-//                                         dots: true,
-//                                         appendDots: $('.dots__wrapper')
-//                                     }
-//                                 }
-//                             ]
-//                         },
-//                         $(this).on('init', () => {
-//                             document.querySelectorAll('.slick-dots button').forEach((dotText, index) => {
-//                                 dotText.textContent = monthNames[index].substring(0, 3)
-//                             })
-//                         })
-//                     );
-//                     $('.year').slick('slickGoTo', new Date().getMonth())
-//                 }
-//             }
-//         })
-//     })
-// })
+                if (item.classList.contains('visiting') && loadSlider) {
+                    loadSlider = false
+                    $('.year').slick({
+                            slidesToShow: 3,
+                            slidesToScroll: 3,
+                            swipe: false,
+                            prevArrow: '<svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-arrow-left-circle-fill slider-arrow slider-prev" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5.5a.5.5 0 0 0 0-1H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5z"/></svg>',
+                            nextArrow: '<svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-arrow-right-circle-fill slider-arrow slider-next" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-11.5.5a.5.5 0 0 1 0-1h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5z"/></svg>',
+                            responsive: [{
+                                    breakpoint: 1441,
+                                    settings: {
+                                        slidesToShow: 3,
+                                        slidesToScroll: 1,
+                                        infinite: true
+                                    }
+                                },
+                                {
+                                    breakpoint: 1025,
+                                    settings: {
+                                        slidesToShow: 2,
+                                        slidesToScroll: 2
+                                    }
+                                },
+                                {
+                                    breakpoint: 686,
+                                    settings: {
+                                        slidesToShow: 1,
+                                        slidesToScroll: 1,
+                                        swipe: true,
+                                        arrows: false,
+                                        dots: true,
+                                        appendDots: $('.dots__wrapper')
+                                    }
+                                }
+                            ]
+                        },
+                        $(this).on('init', () => {
+                            document.querySelectorAll('.slick-dots button').forEach((dotText, index) => {
+                                dotText.textContent = monthNames[index].substring(0, 3)
+                            })
+                        })
+                    );
+                    $('.year').slick('slickGoTo', new Date().getMonth())
+                }
+            }
+        })
+    })
+})
 
 subLists.forEach(subList => {
     subList.addEventListener('click', () => {
