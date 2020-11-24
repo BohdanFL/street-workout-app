@@ -15,6 +15,8 @@ label {
     margin: 0;
 }
 
+
+
 body {
     background-color: #2d2d2d;
     overflow-x: hidden;
@@ -63,6 +65,36 @@ a:hover {
 
 .block {
     padding: 20px;
+}
+
+.coming {
+    position: relative;
+    overflow: hidden;
+}
+
+.coming::before,
+.coming::after {
+    content: '';
+    position: absolute;
+    background: #3a000070;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+}
+
+.coming::after {
+    content: 'In Coming';
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    font-size: 65px;
+    font-weight: bold;
+    color: rgb(182, 24, 24);
+    text-shadow: 80px -200px, 21px -141px, -25px -98px, -71px -50px, -74px 53px, 42px 114px, 140px 30px, 30px 170px;
+    transform: rotate(45deg);
 }
 
 /*` Slider */
@@ -174,6 +206,7 @@ a:hover {
     width: 35px;
     height: 35px;
     cursor: pointer;
+    position: relative;
 }
 
 .month__day-name {
@@ -188,11 +221,28 @@ a:hover {
 }
 
 .month__wrapper.active {
-    box-shadow: 0px 5px 10px 3px rgba(255, 68, 0, .3);
+    box-shadow: 0px 3px 20px 3px rgba(139, 139, 139, 0.6);
 }
 
 .check-js.active {
-    transform: scale(1.5);
+    box-shadow: 0px 0px 10px 5px rgba(68, 68, 68, 0.6);
+    z-index: 2;
+}
+
+.check-js::before {
+    position: absolute;
+    content: attr(data-day);
+    left: 50%;
+    top: 50%;
+    z-index: 10;
+    color: #0000002f;
+    transform: translate(-50%, -50%);
+    font-size: 24px;
+}
+
+.check-js:checked::before,
+.check-js.active:checked::before {
+    display: none;
 }
 
 /* .month__btns input.checked::before {
@@ -258,14 +308,28 @@ a:hover {
 .top__account:nth-child(1) {
     background: rgba(255, 217, 0, 0.5);
 }
+
 .top__account:nth-child(2) {
     background: rgba(192, 192, 192, 0.5);
 
 }
+
+
 .top__account:nth-child(3) {
     background: #cd803280;
-
 }
+
+.top__account {
+    font-size: 14px;
+}
+
+.top__account h3 {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 0.72;
+}
+
+
 
 @keyframes showList {
     from {
@@ -310,9 +374,3 @@ a:hover {
         font-size: 10px;
     }
 }
-
-@media (max-width: 351px) {}
-
-@media (max-width: 376px) {}
-
-@media (max-width: 426px) {}

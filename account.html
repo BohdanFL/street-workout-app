@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
 
@@ -34,35 +33,64 @@
     <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
     <title>Ваш профіль</title>
     <style>
-        #sign-out {
-            position: absolute;
-            top: 30px;
-            left: 30px;
+        .top-bar {
+            position: sticky;
+            top: 0;
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 7px;
+        }
 
+        .top-bar__exit {
+            font-size: 12px;
+        }
+
+        .top-bar__wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            font-size: 12px;
+        }
+
+        .top-bar__wrapper>div {
+            margin-right: 15px;
         }
     </style>
 </head>
 
 <body>
-    <button class="btn btn-secondary btn-lg border-0" id="sign-out">Вийти з аккаунту</button>
+    <nav class="top-bar">
+        <div class="top-bar__wrapper">
+            <div class="top-bar__nickname">
+                Нікнейм: <span></span>
+            </div>
+            <div class="top-bar__level">
+                Рівень: <span></span>
+            </div>
+            <!-- <div class="top-bar__top-place">
+                Місце в топі: <span></span>
+            </div> -->
+        </div>
+        <button class="top-bar__exit btn btn-secondary btn-sm border-0" id="sign-out">Вийти</button>
+    </nav>
     <img src="img/bg.jpg" alt="">
     <nav class="menu">
         <ul class="menu__list">
             <li class="menu__item charac ">
                 Характеристика
             </li>
-            <li class="menu__item visiting ">
+            <li class="menu__item visiting active">
                 Відвідування
             </li>
-            <li class="menu__item elements active">
+            <li class="menu__item elements ">
                 Елементи
             </li>
-            <li class="menu__item top">
+            <li class="menu__item top ">
                 Топ
             </li>
         </ul>
     </nav>
-    <div class="block charac hide">
+    <div class="block charac coming hide">
         <h2>Характеристика</h2>
         <div class="charac__elements">
             <h3>Елементи</h3>
@@ -112,13 +140,13 @@
             </ul>
         </div>
     </div>
-    <div class="block visiting hide">
+    <div class="block visiting">
         <div class="year__total total">0</div>
         <div class="dots__wrapper"></div>
         <div class="year">
         </div>
     </div>
-    <div class="block elements">
+    <div class="block elements hide">
         <h2>Елементи</h2>
         <div class="container-fluid">
             <div class="elements__wrapper row">
@@ -167,161 +195,6 @@
     <div class="block top hide">
         <h2>Топ</h2>
         <div class="top__wrapper">
-            <div class="top__account">
-                <h3>Топ 1 </h3>
-                <ul class="top__list">
-                    <li class="top__item">
-                        Никнейм: Богдан
-                    </li>
-                    <li class="top__item">
-                        Рівень: 40
-                    </li>
-                    <li class="top__item">
-                        К-сть відвідувань: 325
-                    </li>
-                    <li class="top__item sublist">
-                        К-сть вивчених елементів
-                        <ul class="hidelist">
-                            <li>
-                                Загально: 74
-                            </li>
-                            <li>
-                                Низького рівня: 50
-                            </li>
-                            <li>
-                                Середнього рівня: 20
-                            </li>
-                            <li>
-                                Високого рівня: 4
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-            <div class="top__account">
-                <h3>Топ 2 </h3>
-                <ul class="top__list">
-                    <li class="top__item">
-                        Никнейм: Марян
-                    </li>
-                    <li class="top__item">
-                        Рівень: 37
-                    </li>
-                    <li class="top__item">
-                        К-сть відвідувань: 280
-                    </li>
-                    <li class="top__item sublist">
-                        К-сть вивчених елементів
-                        <ul class="hidelist">
-                            <li>
-                                Загально: 69
-                            </li>
-                            <li>
-                                Низького рівня: 43
-                            </li>
-                            <li>
-                                Середнього рівня: 19
-                            </li>
-                            <li>
-                                Високого рівня: 7
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-            <div class="top__account">
-                <h3>Топ 3 </h3>
-                <ul class="top__list">
-                    <li class="top__item">
-                        Никнейм: Роман
-                    </li>
-                    <li class="top__item">
-                        Рівень: 33
-                    </li>
-                    <li class="top__item">
-                        К-сть відвідувань: 150
-                    </li>
-                    <li class="top__item sublist">
-                        К-сть вивчених елементів
-                        <ul class="hidelist">
-                            <li>
-                                Загально: 33
-                            </li>
-                            <li>
-                                Низького рівня: 20
-                            </li>
-                            <li>
-                                Середнього рівня: 11
-                            </li>
-                            <li>
-                                Високого рівня: 2
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-            <div class="top__account">
-                <h3>Топ 4 </h3>
-                <ul class="top__list">
-                    <li class="top__item">
-                        Никнейм: Вадим
-                    </li>
-                    <li class="top__item">
-                        Рівень: 19
-                    </li>
-                    <li class="top__item">
-                        К-сть відвідувань: 126
-                    </li>
-                    <li class="top__item sublist">
-                        К-сть вивчених елементів
-                        <ul class="hidelist">
-                            <li>
-                                Загально: 45
-                            </li>
-                            <li>
-                                Низького рівня: 40
-                            </li>
-                            <li>
-                                Середнього рівня: 5
-                            </li>
-                            <li>
-                                Високого рівня: 0
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-            <div class="top__account">
-                <h3>Топ 5 </h3>
-                <ul class="top__list">
-                    <li class="top__item">
-                        Никнейм: Степан
-                    </li>
-                    <li class="top__item">
-                        Рівень: 18
-                    </li>
-                    <li class="top__item">
-                        К-сть відвідувань: 300
-                    </li>
-                    <li class="top__item sublist">
-                        К-сть вивчених елементів
-                        <ul class="hidelist">
-                            <li>
-                                Загально: 37
-                            </li>
-                            <li>
-                                Низького рівня: 33
-                            </li>
-                            <li>
-                                Середнього рівня: 4
-                            </li>
-                            <li>
-                                Високого рівня: 0
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
         </div>
     </div>
     <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>

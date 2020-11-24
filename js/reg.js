@@ -1,3 +1,30 @@
+// База данних
+const db = firebase.database()
+
+let dataDays = []
+
+let monthNames = [
+    'Січень',
+    'Лютий',
+    'Березень',
+    'Квітень',
+    'Травень',
+    'Червень',
+    'Липень',
+    'Серпень',
+    'Вересень',
+    'Жовтень',
+    'Листопад',
+    'Грудень'
+]
+
+function daysInMonths() {
+    for (let i = 0; i < 12; i++) {
+        dataDays.push(32 - new Date(new Date().getFullYear(), i, 32).getDate())
+    }
+}
+daysInMonths()
+
 const formReg = document.querySelector('#form-reg')
 
 formReg.addEventListener('submit', (e) => {
@@ -23,11 +50,12 @@ formReg.addEventListener('submit', (e) => {
         .createUserWithEmailAndPassword(email, password)
         .then(user => {
             console.log(user.user.uid);
-            firebase.database().ref('users/' + user.user.uid).set({
+            db.ref('users/' + user.user.uid).set({
                 charac: {
                     nickname: nickname,
                     email: email,
-                    level: 0
+                    level: 0,
+                    placeInTop: 0
                 },
                 elements: {
                     low: 0,
@@ -36,30 +64,90 @@ formReg.addEventListener('submit', (e) => {
                 },
                 visiting: {
                     months: {
-                        Січень: 0,
-                        Лютий: 0,
-                        Березень: 0,
-                        Квітень: 0,
-                        Травень: 0,
-                        Червень: 0,
-                        Липень: 0,
-                        Серпень: 0,
-                        Вересень: 0,
-                        Жовтень: 0,
-                        Листопад: 0,
-                        Грудень: 0
+                        Січень: {
+                            checked: 0,
+                            total: 0,
+                            days: 0
+                        },
+                        Лютий: {
+                            checked: 0,
+                            total: 0,
+                            days: 0
+                        },
+                        Березень: {
+                            checked: 0,
+                            total: 0,
+                            days: 0
+                        },
+                        Квітень: {
+                            checked: 0,
+                            total: 0,
+                            days: 0
+                        },
+                        Травень: {
+                            checked: 0,
+                            total: 0,
+                            days: 0
+                        },
+                        Червень: {
+                            checked: 0,
+                            total: 0,
+                            days: 0
+                        },
+                        Липень: {
+                            checked: 0,
+                            total: 0,
+                            days: 0
+                        },
+                        Серпень: {
+                            checked: 0,
+                            total: 0,
+                            days: 0
+                        },
+                        Вересень: {
+                            checked: 0,
+                            total: 0,
+                            days: 0
+                        },
+                        Жовтень: {
+                            checked: 0,
+                            total: 0,
+                            days: 0
+                        },
+                        Листопад: {
+                            checked: 0,
+                            total: 0,
+                            days: 0
+                        },
+                        Грудень: {
+                            checked: 0,
+                            total: 0,
+                            days: 0
+                        }
                     },
                     total: 0
                 },
             })
             // Получаємо базу данних елементів
-            firebase.database().ref('elements/').once('value')
+            db.ref('elements/').once('value')
                 .then(elemsData => {
                     // Записуємо базу данних елементів до данних користувача
-                    console.log(elemsData.val());
-                    console.log(user.user.uid);
-                    firebase.database().ref('users/' + user.user.uid + '/elements/').set(elemsData.val())
+                    db.ref('users/' + user.user.uid + '/elements/').set(elemsData.val())
                 })
+            for (let iM = 0; iM < monthNames.length; iM++) {
+                const monthName = monthNames[iM];
+                const dataDay = dataDays[iM];
+                let days = {}
+                let monthObj = {
+                    checked: 0
+                }
+                for (let i = 1; i <= dataDay; i++) {
+                    days[i] = 0
+                    monthObj['total'] = dataDay
+                    monthObj['days'] = days
+                }
+                db.ref('users/' + user.user.uid + '/visiting/months/' + monthName + '/').update(monthObj)
+            }
         })
         .catch(error => {
             const errorCode = error.code
@@ -71,7 +159,7 @@ firebase.auth().onAuthStateChanged((user) => {
     if (user) {
         console.log(user);
         setTimeout(() => {
-            window.location = 'https://bohdanflexer.github.io/street-workout-app/account.html'
+            window.location = 'https://bohdanflexer.github.io/street-workout-app//account.html'
         }, 3000)
     } else {
         return
