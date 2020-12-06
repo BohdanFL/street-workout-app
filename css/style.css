@@ -341,7 +341,7 @@ a:hover {
 .elements__arrow {
     filter: invert(1);
     position: sticky;
-    left: 250px;
+    left: 97%;
     height: 16px;
     margin: -11px 0px 4px 0px;
     animation: elemArrow 800ms ease-in-out infinite alternate;
