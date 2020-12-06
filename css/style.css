@@ -306,6 +306,7 @@ a:hover {
 .elements.block {
     overflow-x: scroll;
     margin-right: 20px;
+    position: relative;
 }
 
 .elements__inner {
@@ -335,6 +336,25 @@ a:hover {
     flex-direction: column;
     flex-wrap: wrap;
     max-height: 450px;
+}
+
+.elements__arrow {
+    filter: invert(1);
+    position: sticky;
+    left: 250px;
+    height: 16px;
+    margin: -11px 0px 4px 0px;
+    animation: elemArrow 800ms ease-in-out infinite alternate;
+}
+
+@keyframes elemArrow {
+    from {
+        transform: translateX(10px) rotate(-90deg);
+    }
+
+    to {
+        transform: translateX(0px) rotate(-90deg);
+    }
 }
 
 .low-level__list {
@@ -497,9 +517,11 @@ a:hover {
         width: 850px;
     }
 
-    .elements__column h3, .charac h3 {
+    .elements__column h3,
+    .charac h3 {
         font-size: 1.4em;
     }
+
     .charac li {
         font-size: 11.5px;
     }
