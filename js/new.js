@@ -495,7 +495,7 @@ firebase.auth().onAuthStateChanged((user) => {
         fillTopBar()
         // createSubLists()
     } else {
-        window.location = '/login.html'
+        window.location = 'https://bohdanflexer.github.io/street-workout-app/login.html'
     }
 });
 
