@@ -21,9 +21,13 @@ let monthNames = [
 ]
 
 // Назва останнього місяця
-const lastMonthName = document.querySelector('.last-month-name')
+let lastMonthName
 // Число останнього місяця
-const lastMonthNumber = document.querySelector('.last-month-number')
+let lastMonthNumber = localStorage.getItem('lastMonthNumber')
+
+
+let lastElementName = localStorage.getItem('lastElementName')
+let lastElementDate = localStorage.getItem('lastElementDate')
 
 const year = document.querySelector('.year')
 
@@ -32,6 +36,7 @@ const output = document.querySelector('.year__total.total')
 
 const menuItem = document.querySelectorAll(".menu__item")
 const blocks = document.querySelectorAll(".block")
+const charac = document.querySelectorAll(".charac.block")
 
 // Списки елементів
 const lowLevelList = document.querySelector('.low-level__list')
@@ -49,9 +54,6 @@ function daysInMonths() {
     }
 }
 daysInMonths()
-
-
-lastMonthNumber.textContent = localStorage.getItem('lastMonthNumber')
 
 function initMonths(userID) {
     for (let iM = 0; iM < monthNames.length; iM++) {
@@ -100,7 +102,7 @@ function initMonths(userID) {
         `
         }
         if (new Date().getMonth() - 1 === iM) {
-            lastMonthName.textContent = monthName
+            lastMonthName = monthName
         }
         year.insertAdjacentHTML("beforeend", month)
 
@@ -108,6 +110,7 @@ function initMonths(userID) {
         const monthBtn = monthBtns[iM]
 
         db.ref('users/' + userID + '/visiting/months/' + monthName + '/').once('value').then(dataTotal => {
+            document.querySelector('.month-' + iM + ' .month__total').textContent = '(' + dataTotal.val().checked + ')'
             for (let iD = 1; iD <= dataTotal.val().total; iD++) {
                 // Створюємо кнопки
                 const checkElem = document.createElement('input')
@@ -153,9 +156,14 @@ function getDataElements(userID, level, list) {
                 </label>
             </li>`
                 list.insertAdjacentHTML('beforeend', item)
-
                 list.querySelectorAll('.elements__check').forEach(item => {
                     item.addEventListener('click', () => {
+                        lastElementDate = new Date().toLocaleDateString()
+                        lastElementName = item.parentElement.textContent.trim()
+
+                        localStorage.setItem('lastElementName', lastElementName)
+                        localStorage.setItem('lastElementDate', lastElementDate)
+
                         learnElem.textContent = learn
                         if (key.trim() === item.parentElement.textContent.trim()) {
                             if (item.checked) {
@@ -193,16 +201,6 @@ function getDataElements(userID, level, list) {
         })
 }
 
-function createSubLists() {
-    let subLists = document.querySelectorAll('.sublist')
-    subLists.forEach(subList => {
-        subList.addEventListener('click', () => {
-            subList.querySelector('.sublist ul').classList.toggle('showlist')
-            subList.querySelector('.sublist ul').classList.toggle('hidelist')
-        })
-    })
-}
-
 function createTop() {
     topWrapper.innerHTML = ''
     db.ref('users/').once('value')
@@ -215,42 +213,127 @@ function createTop() {
                     (value.elements.low.learn * 0.2) +
                     (value.elements.medium.learn * 0.6) + (value.elements.high.learn * 1)
                 )
-
                 const topAccount = `
-                    <div class="top__account text-center rounded-pill mb-2 py-4 px-4">
-                    <h3 class="top__place">Топ </h3>
-                        <ul class="top__list m-0">
-                        <li class="top__item"> Никнейм: ${value.charac.nickname} </li>
-                        <li class="top__item"> Рівень: ${value.charac.level} </li>
-                        <li class="top__item"> К-сть відвідувань: ${value.visiting.total} </li>
-                        <li class="top__item sublist">
-                            К-сть вивчених елементів
-                            <ul class="hidelist m-0">
-                                <li> Загально: ${value.elements.learn} </li>
-                                <li> Низького рівня: ${value.elements.low.learn} </li>
-                                <li> Середнього рівня: ${value.elements.medium.learn} </li>
-                                <li> Високого рівня: ${value.elements.high.learn} </li>
-                            </ul>
-                        </li>
-                        </ul>
+                <div class="top__wrapper-account sublist">
+                    <div class="top__account d-flex align-items-center justify-content-between rounded-pill my-sm-2 my-1 py-1 px-3">
+                        <div class="d-flex">
+                            <span class="top__nick">
+                                ${value.charac.nickname}
+                            </span>
+                            <span class="top__lvl px-2 rounded-pill ml-2">
+                                ${value.charac.level}
+                            </span>
+                            <img class="drop-down-arrow" src="img/002-drop-down-arrow.svg" alt="">
+                        </div>
+                        <div class="top__place">
+                            Позиція <span>1</span>
+                        </div>
                     </div>
+                    <ul class="top__hidelist mb-1">
+                        <li> К-сть відвідувань: ${value.visiting.total} </li>
+                        <em>К-сть вивчених елементів</em>
+                        <li> Загально: ${value.elements.learn} </li>
+                        <li> Низького рівня: ${value.elements.low.learn} </li>
+                        <li> Середнього рівня: ${value.elements.medium.learn} </li>
+                        <li> Високого рівня: ${value.elements.high.learn} </li>
+                    </ul>
+                </div>
                 `
                 topAccounts.push({
                     html: topAccount,
                     level: value.charac.level
                 })
-                topAccounts.sort(function (a, b) {
-                    return b.level - a.level;
-                });
+                topAccounts.sort((a, b) => b.level - a.level);
             }
             topAccounts.forEach(item => {
                 topWrapper.insertAdjacentHTML('beforeend', item.html)
             })
-            document.querySelectorAll('.top__place').forEach((item, placeIndex) => {
-                item.textContent = `Топ ${++placeIndex}`
+            document.querySelectorAll('.top__place span').forEach((item, placeIndex) => {
+                item.textContent = ++placeIndex
             })
             createSubLists()
         })
+}
+
+function createCharac() {
+    charac[0].innerHTML = ''
+    const currentUserID = firebase.auth().currentUser.uid
+    let characVisitingMonths = ''
+    let lastElementDateChanged
+    for (let i = 0; i < monthNames.length; i++) {
+        const monthName = monthNames[i];
+        db.ref('users/' + currentUserID + '/visiting/months/' + monthName + '/checked').once('value')
+            .then(value => {
+                characVisitingMonths = characVisitingMonths + `<li>${monthName}: ${value.val()} </li>`
+            })
+        i2 = i + 1
+        lastElementDateChanged = lastElementDate.split('.')
+        if (lastElementDateChanged[1] === i2.toString()) {
+            lastElementDateChanged[1] = monthName
+        }
+    }
+
+    db.ref('users/' + currentUserID + '/').once('value')
+        .then(value => {
+            const {
+                elements,
+                visiting
+            } = value.val()
+            const characHTML = `
+                <div class="charac__elements">
+                <h3 class="mb-2">Елементи</h3>
+                <ul class="charac__elements-list">
+                    <li class="sublist">К-сть вивчених елементів
+                        <img class="drop-down-arrow" src="img/002-drop-down-arrow.svg" alt="">
+                        <ul>
+                            <li>
+                                Загально: ${elements.learn}
+                            </li>
+                            <li>
+                                Низького рівня: ${elements.low.learn}
+                            </li>
+                            <li>
+                                Середнього рівня: ${elements.medium.learn}
+                            </li>
+                            <li>
+                                Високого рівня: ${elements.high.learn}
+                            </li>
+                        </ul>
+                    </li>
+                    <li>Останній вивчений елемент: ${lastElementName} - ${lastElementDateChanged.join(' ')}</li>
+                </ul>
+            </div>
+            <div class="charac__visiting">
+                <h3 class="mb-2">Відвідування</h3>
+                <ul class="charac__visiting-list">
+                    <li>Всього відвідувань: ${visiting.total}</li>
+                    <li>Відвідувань за останній місяць(${lastMonthName}): ${lastMonthNumber}<span
+                            class="last-month-number"></span></li>
+                    <li class="sublist">Відвідування по місяцям
+                        <img class="drop-down-arrow" src="img/002-drop-down-arrow.svg" alt="">
+                        <ul class="charac__visiting-months">
+                            ${characVisitingMonths}
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            `
+            charac[0].insertAdjacentHTML('beforeend', characHTML)
+            createSubLists()
+        })
+
+}
+
+function createSubLists() {
+    let subLists = document.querySelectorAll('.sublist')
+    subLists.forEach(subList => {
+        const list = subList.querySelector('.sublist ul')
+        let deg = 0
+        subList.addEventListener('click', () => {
+            list.classList.toggle('hidelist')
+            subList.querySelector('img').style.transform = 'rotateZ(' + (deg ? deg = deg + 180 : deg = deg - 180) + 'deg)'
+        })
+    })
 }
 
 function checkingMonths(userID) {
@@ -263,7 +346,7 @@ function checkingMonths(userID) {
 
                 const monthWrapper = document.querySelector('.month-' + i)
                 const checkboxs = monthWrapper.querySelectorAll('.check-js')
-
+                const monthTotal = monthWrapper.querySelector('.month__total')
                 let switchCheck = 1
 
                 let monthChecked = month.val().months[monthName].checked
@@ -277,17 +360,14 @@ function checkingMonths(userID) {
                             switchCheck = 0
                             monthChecked--
                         }
+                        monthTotal.textContent = '(' + monthChecked + ')'
 
-                        console.log(monthName + ': ' + monthChecked)
                         db.ref('users/' + userID + '/visiting/months/' + monthName + '/').update({
                             checked: monthChecked
                         })
                         db.ref('users/' + userID + '/visiting/months/' + monthName + '/days/').update({
                             [checkedDay]: switchCheck
                         })
-                        // console.log(monthName)
-                        // console.log(monthWrapper)
-                        // console.log(checkboxs)
                     })
                 })
                 const firstBtn = document.querySelectorAll('.month__btns .check-js:first-child')
@@ -319,6 +399,7 @@ function calcLevel(userID) {
     db.ref('users/' + userID + '/').once('value').then(user => {
         level = Math.round((user.val().elements.low.learn * 0.2) + (user.val().elements.medium.learn * 0.6) + (user.val().elements.high.learn * 1))
         db.ref('users/' + userID + '/charac/level/').set(level)
+        fillTopBar()
     })
 }
 
@@ -330,24 +411,6 @@ function fillTopBar() {
 
     })
 }
-
-// Прослуховуємо чи має користувач аккаунт
-firebase.auth().onAuthStateChanged((user) => {
-    if (user) {
-
-        initMonths(user.uid)
-
-        checkingMonths(user.uid)
-
-        // Получаємо бази данних елементів користувача
-        getDataElements(user.uid, 'low', lowLevelList)
-        getDataElements(user.uid, 'medium', mediumLevelList)
-        getDataElements(user.uid, 'high', highLevelList)
-        fillTopBar()
-    } else {
-        window.location = 'https://bohdanflexer.github.io/street-workout-app//login.html'
-    }
-});
 
 menuItem.forEach(item => {
     item.addEventListener("click", () => {
@@ -365,8 +428,11 @@ menuItem.forEach(item => {
                 if (item.classList.contains('top')) {
                     createTop()
                 }
+                if (item.classList.contains('charac')) {
+                    createCharac()
+                }
                 if (item.classList.contains('visiting') && loadSlider) {
-                    loadSlider = false
+                    // loadSlider = false
                     $('.year').slick({
                             slidesToShow: 3,
                             slidesToScroll: 3,
@@ -414,6 +480,24 @@ menuItem.forEach(item => {
     })
 })
 
+// Прослуховуємо чи має користувач аккаунт
+firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+
+        initMonths(user.uid)
+
+        checkingMonths(user.uid)
+
+        // Получаємо бази данних елементів користувача
+        getDataElements(user.uid, 'low', lowLevelList)
+        getDataElements(user.uid, 'medium', mediumLevelList)
+        getDataElements(user.uid, 'high', highLevelList)
+        fillTopBar()
+        // createSubLists()
+    } else {
+        window.location = '/login.html'
+    }
+});
 
 
 // При кліці на кнопку виходимо з аккаунту
@@ -422,6 +506,7 @@ document.querySelector('#sign-out').addEventListener('click', () => {
 })
 //` TODO:
 //` Відсортувати коритувачів по рівням (на стороні бази данних)
-//`
-//`
+//` Оптимізувація скачування данних, а конкретніше відвідуваннь і елементів
+//` Поміняти схему відвідування і добавити в неї роки
+//` Згропувати елементи
 //`

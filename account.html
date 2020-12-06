@@ -7,7 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
-
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
 
@@ -35,6 +36,7 @@
     <style>
         .top-bar {
             position: sticky;
+            z-index: 2;
             top: 0;
             display: flex;
             justify-content: space-between;
@@ -59,7 +61,7 @@
 </head>
 
 <body>
-    <nav class="top-bar">
+    <nav class="top-bar bg-dark">
         <div class="top-bar__wrapper">
             <div class="top-bar__nickname">
                 Нікнейм: <span></span>
@@ -73,16 +75,19 @@
         </div>
         <button class="top-bar__exit btn btn-secondary btn-sm border-0" id="sign-out">Вийти</button>
     </nav>
-    <img src="img/bg.jpg" alt="">
+    <div class="collage">
+        <img class="w-100 mob" src="img/collage-mob.jpg" alt="">
+        <img class="w-100 pc" src="img/collage-pc.jpg" alt="">
+    </div>
     <nav class="menu">
         <ul class="menu__list">
             <li class="menu__item charac ">
                 Характеристика
             </li>
-            <li class="menu__item visiting active">
+            <li class="menu__item visiting ">
                 Відвідування
             </li>
-            <li class="menu__item elements ">
+            <li class="menu__item elements active">
                 Елементи
             </li>
             <li class="menu__item top ">
@@ -90,110 +95,56 @@
             </li>
         </ul>
     </nav>
-    <div class="block charac coming hide">
-        <h2>Характеристика</h2>
-        <div class="charac__elements">
-            <h3>Елементи</h3>
-            <ul class="charac__elements-list">
-                <li class="sublist">К-сть вивчених елементів
-                    <ul class="hidelist">
-                        <li>
-                            Загально: 33
-                        </li>
-                        <li>
-                            Низького рівня: 20
-                        </li>
-                        <li>
-                            Середнього рівня: 11
-                        </li>
-                        <li>
-                            Високого рівня: 2
-                        </li>
-                    </ul>
-                </li>
-                <li>К-сть вивчених елементів за останній місяць: 2</li>
-                <li>Останній вивчений елемент: Перельот кутом - 23 грудня 2020</li>
-            </ul>
-        </div>
-        <div class="charac__visiting">
-            <h3>Відвідування</h3>
-            <ul class="charac__visiting-list">
-                <li>Всього відвідувань: <span class="charac__visiting-total total"></span></li>
-                <li>Відвідувань за останній місяць(<span class="last-month-name"></span>): <span
-                        class="last-month-number"></span></li>
-                <li class="sublist">Відвідування по місяцям
-                    <ul class="hidelist charac__visiting-months">
-                        <li>Січень: 5 </li>
-                        <li>Лютий: 9</li>
-                        <li>Березень: 15</li>
-                        <li>Квітень: 10</li>
-                        <li>Травень: 8</li>
-                        <li>Червень: 15</li>
-                        <li>Липень: 14</li>
-                        <li>Серпень: 14</li>
-                        <li>Вересень: 15</li>
-                        <li>Жовтень: 12</li>
-                        <li>Листопад: 11</li>
-                        <li>Грудень: 13</li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
+    <div class="block charac hide">
     </div>
-    <div class="block visiting">
+
+    <div class="block visiting hide">
         <div class="year__total total">0</div>
         <div class="dots__wrapper"></div>
         <div class="year">
         </div>
     </div>
-    <div class="block elements hide">
-        <h2>Елементи</h2>
-        <div class="container-fluid">
-            <div class="elements__wrapper row">
-                <div class="elements__column w-100 col-lg-4 low-level mb-5">
-                    <div class="elements__inner container-fluid row">
-                        <p class="col-6 p-0">
-                            Вивчено: <span class="low-level-learn"></span>
-                        </p>
-                        <p class="col-6 p-0">
-                            Всього: <span class="low-level-total"></span>
-                        </p>
-                    </div>
-                    <h3>Низького рівня</h3>
-                    <ul class="elements__list low-level__list">
-                    </ul>
+    <div class="block elements">
+        <div class="elements__wrapper d-flex">
+            <div class="elements__column low-level">
+                <h3 class="mb-3">Низького рівня</h3>
+                <div class="elements__inner d-flex justify-content-between mb-2">
+                    <p>
+                        Вивчено: <span class="low-level-learn"></span>
+                    </p>
+                    <p>
+                        Всього: <span class="low-level-total"></span>
+                    </p>
                 </div>
-                <div class="elements__column w-100 col-lg-4 medium-level mb-5">
-                    <div class="elements__inner container-fluid row">
-                        <p class="col-6 p-0">
-                            Вивчено: <span class="medium-level-learn"></span>
-                        </p>
-                        <p class="col-6 p-0">
-                            Всього: <span class="medium-level-total"></span>
-                        </p>
-                    </div>
-                    <h3>Середньго рівня</h3>
-                    <ul class="elements__list medium-level__list">
-                    </ul>
+                <ul class="elements__list low-level__list"></ul>
+            </div>
+            <div class="elements__column medium-level">
+                <h3 class="mb-3">Середньго рівня</h3>
+                <div class="elements__inner d-flex justify-content-between mb-2">
+                    <p>
+                        Вивчено: <span class="medium-level-learn"></span>
+                    </p>
+                    <p>
+                        Всього: <span class="medium-level-total"></span>
+                    </p>
                 </div>
-                <div class="elements__column w-100 col-lg-4 high-level mb-5">
-                    <div class="elements__inner container-fluid row">
-                        <p class="col-6 p-0">
-                            Вивчено: <span class="high-level-learn"></span>
-                        </p>
-                        <p class="col-6 p-0">
-                            Всього: <span class="high-level-total"></span>
-                        </p>
-                    </div>
-                    <h3>Вищого рівня</h3>
-                    <ul class="elements__list high-level__list">
-                    </ul>
+                <ul class="elements__list medium-level__list"></ul>
+            </div>
+            <div class="elements__column high-level">
+                <h3 class="mb-3">Вищого рівня</h3>
+                <div class="elements__inner d-flex justify-content-between mb-2">
+                    <p>
+                        Вивчено: <span class="high-level-learn"></span>
+                    </p>
+                    <p>
+                        Всього: <span class="high-level-total"></span>
+                    </p>
                 </div>
+                <ul class="elements__list high-level__list"></ul>
             </div>
         </div>
     </div>
     <div class="block top hide">
-        <h2>Топ</h2>
         <div class="top__wrapper">
         </div>
     </div>

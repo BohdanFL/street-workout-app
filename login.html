@@ -30,12 +30,11 @@
 
         firebase.auth().onAuthStateChanged((user) => {
             if (user) {
-                window.location = 'https://bohdanflexer.github.io/street-workout-app//account.html'
+                window.location = '/account.html'
             } else {
                 return
             }
         });
-        
     </script>
 
     <link rel="stylesheet" href="css/style.css">
@@ -65,7 +64,7 @@
                 Увійти
             </button>
         </form>
-        <a class="btn btn-secondary btn-sm" href="https://bohdanflexer.github.io/street-workout-app/index.html">
+        <a class="btn btn-secondary btn-sm" href="/index.html">
             Зареєструватися
         </a>
     </div>

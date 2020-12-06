@@ -2,20 +2,21 @@
 *,
 *::after,
 *::before {
-    font-family: 'Open sans', Verdana, Geneva, Tahoma, sans-serif;
+    font-family: 'Fira Sans', Verdana, Geneva, Tahoma, sans-serif;
     padding: 0;
     margin: 0;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+label,
 p {
     margin: 0;
 }
-
-label {
-    margin: 0;
-}
-
-
 
 body {
     background-color: #2d2d2d;
@@ -95,6 +96,10 @@ a:hover {
     color: rgb(182, 24, 24);
     text-shadow: 80px -200px, 21px -141px, -25px -98px, -71px -50px, -74px 53px, 42px 114px, 140px 30px, 30px 170px;
     transform: rotate(45deg);
+}
+
+.collage .mob {
+    display: none;
 }
 
 /*` Slider */
@@ -275,77 +280,139 @@ a:hover {
 
 .sublist ul {
     transform-origin: top;
-    height: 0;
     transform: scaleY(0);
-
-}
-
-.sublist ul.showlist {
-    animation: showList 300ms forwards;
+    max-height: 0;
+    transition: all 0.3s;
 }
 
 .sublist ul.hidelist {
-    animation: hideList 300ms forwards;
+    max-height: 90px;
+    transform: scaleY(1);
 }
 
+.sublist ul.hidelist.top__hidelist {
+    max-height: 140px;
+}
+
+/* .sublist ul.showlist {
+    animation: showList 300ms forwards;
+} */
+
+
+
+
 /*` Elements */
+
+.elements.block {
+    overflow-x: scroll;
+    margin-right: 20px;
+}
+
+.elements__inner {
+    max-width: 250px;
+}
+
+.elements__item {
+    width: 250px;
+    margin-right: 20px;
+}
 
 .elements__item label {
     display: flex;
     justify-content: space-between;
-    align-items: center;
     max-width: 250px;
     cursor: pointer;
 }
 
 .elements__item input {
-    width: 23px;
-    height: 23px;
+    min-width: 23px;
+    min-height: 23px;
     cursor: pointer;
 }
 
+.elements__list {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    max-height: 450px;
+}
+
+.low-level__list {
+    width: 250px;
+}
+
+.medium-level__list {
+    width: 1050px;
+}
+
 /*` Top */
-.top__account:nth-child(1) {
+.top__wrapper-account:nth-child(1) .top__account {
     background: rgba(255, 217, 0, 0.5);
 }
 
-.top__account:nth-child(2) {
+.top__wrapper-account:nth-child(2) .top__account {
     background: rgba(192, 192, 192, 0.5);
-
 }
 
-
-.top__account:nth-child(3) {
+.top__wrapper-account:nth-child(3) .top__account {
     background: #cd803280;
+}
+
+.top__wrapper-account {
+    border-bottom: 1px solid rgb(94, 94, 94);
 }
 
 .top__account {
     font-size: 14px;
+    user-select: none;
 }
 
-.top__account h3 {
-    font-size: 24px;
-    font-weight: 700;
-    line-height: 0.72;
+.top__place {
+    margin: 0 5px 0 0;
+    font-size: 15px;
 }
 
+.top__nick {
+    font-size: 18px;
+}
 
+.top__lvl {
+    background: rgba(61, 61, 61, 0.699);
+    line-height: 200%;
+}
 
-@keyframes showList {
+.top__wrapper-account ul {
+    position: relative;
+    font-size: 14px;
+}
+
+.top__wrapper-account ul em {
+    margin-left: 30px;
+}
+
+.drop-down-arrow {
+    width: 12px;
+    filter: invert(1);
+    display: inline-block;
+    margin: 0px 0 0 5px;
+    transition: transform 500ms;
+}
+
+/* @keyframes showList {
     from {
         height: 0px;
         transform: scaleY(0);
     }
 
     to {
-        height: 96px;
+        height: 100%;
         transform: scaleY(1);
     }
 }
 
 @keyframes hideList {
     from {
-        height: 96px;
+        height: 100%;
         transform: scaleY(1);
     }
 
@@ -353,7 +420,7 @@ a:hover {
         height: 0px;
         transform: scaleY(0);
     }
-}
+} */
 
 /* Media queries */
 
@@ -372,5 +439,68 @@ a:hover {
 @media (max-width: 480px) {
     .menu__item {
         font-size: 10px;
+    }
+}
+
+@media (max-width: 426px) {
+    .collage .mob {
+        display: block;
+    }
+
+    .collage .pc {
+        display: none;
+    }
+}
+
+@media (max-width: 376px) {
+    .top__nick {
+        font-size: 13px;
+    }
+
+    .top__account,
+    .top__place {
+        font-size: 10px;
+    }
+
+    .top__wrapper-account ul {
+        font-size: 12px;
+    }
+
+    .elements__item {
+        font-size: 12px;
+        max-width: 190px;
+    }
+
+    input.elements__check {
+        min-width: 18px;
+        min-height: 18px;
+    }
+
+    .elements__list {
+        max-height: 330px;
+    }
+
+    .elements__item label {
+        max-width: 190px;
+    }
+
+    .elements__inner {
+        max-width: 190px;
+        font-size: 12px;
+    }
+
+    .low-level__list {
+        width: 220px;
+    }
+
+    .medium-level__list {
+        width: 850px;
+    }
+
+    .elements__column h3, .charac h3 {
+        font-size: 1.4em;
+    }
+    .charac li {
+        font-size: 11.5px;
     }
 }

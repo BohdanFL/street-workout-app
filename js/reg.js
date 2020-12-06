@@ -159,7 +159,7 @@ firebase.auth().onAuthStateChanged((user) => {
     if (user) {
         console.log(user);
         setTimeout(() => {
-            window.location = 'https://bohdanflexer.github.io/street-workout-app//account.html'
+            window.location = '/account.html'
         }, 3000)
     } else {
         return
