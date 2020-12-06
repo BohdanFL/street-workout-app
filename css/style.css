@@ -452,7 +452,7 @@ a:hover {
     }
 }
 
-@media (max-width: 376px) {
+@media (max-width: 426px) {
     .top__nick {
         font-size: 13px;
     }
