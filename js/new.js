@@ -267,9 +267,11 @@ function createCharac() {
                 characVisitingMonths = characVisitingMonths + `<li>${monthName}: ${value.val()} </li>`
             })
         i2 = i + 1
-        lastElementDateChanged = lastElementDate.split('.')
-        if (lastElementDateChanged[1] === i2.toString()) {
-            lastElementDateChanged[1] = monthName
+        if (lastElementDate) {
+            lastElementDateChanged = lastElementDate.split('.')
+            if (lastElementDateChanged[1] === i2.toString()) {
+                lastElementDateChanged[1] = monthName
+            }
         }
     }
 
