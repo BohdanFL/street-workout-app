@@ -497,7 +497,7 @@ firebase.auth().onAuthStateChanged((user) => {
         fillTopBar()
         // createSubLists()
     } else {
-        window.location = 'https://bohdanfl.gihub.io/street-workout-app/login.html'
+        window.location = 'https://bohdanfl.github.io/street-workout-app/login.html'
     }
 });
 
